@@ -18,10 +18,10 @@ class programas extends CI_Controller{
 		$this->load->view('template/body', $data);
 	}
 
-	function nuevoPrograma(){
+	function agregar(){
 		//$this->load->view('programas/nuevo');
 		$data['nombre']='Programas';
-		$data['view'] ='programas/nuevo';
+		$data['view'] ='programas/agregar';
 		$this->load->view('template/body', $data);
 	}
 
@@ -127,7 +127,7 @@ class programas extends CI_Controller{
 
 	}
 
-	function eliminar(){
+	function borrar(){
 		$id = $this->uri->segment(3);
 		$data['activo'] = 0;
 		$data['id'] = $id;
@@ -135,7 +135,7 @@ class programas extends CI_Controller{
 		redirect('programas/programas', 'refresh');
 	}
 
-	function editar(){
+	function actualizar(){
 		$guardar = $this->input->post('guardar');
 		if($guardar){
 			$data['id'] = $this->input->post('id');
@@ -172,7 +172,7 @@ class programas extends CI_Controller{
 			$id = $this->uri->segment(3);
 			$programaData = $this->programasModel->getById($id);
 			$data['nombre']='Programas';
-			$data['view'] = 'programas/editar';
+			$data['view'] = 'programas/actualizar';
 			$data['nombre'] = $programaData[0]->nombre;
 			$data['descripcion'] = $programaData[0]->descripcion;
 			$this->load->view('template/template', $data);

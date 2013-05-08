@@ -17,9 +17,9 @@ class Categorias extends CI_Controller {
 		$this->load->view('template/body', $data);
 	}
 
-	function nuevaCategoria(){
+	function agregar(){
 		$data['nombre']='Tipos de usuario';
-		$data['view'] ='categorias/nueva';
+		$data['view'] ='categorias/agregar';
 		$this->load->view('template/body', $data);
 		//$this->load->view('categorias/nueva');
 	}
@@ -59,7 +59,7 @@ class Categorias extends CI_Controller {
 		$this->load->view('template/body', $data);
 	}
 
-	function editar(){
+	function actualizar(){
 		$guardar = $this->input->post('guardar');
 		if($guardar){
 			$data['id'] = $this->input->post('id');
@@ -71,14 +71,14 @@ class Categorias extends CI_Controller {
 		}else{
 			$id = $this->uri->segment(3);
 			$categoriaData = $this->categoriasModel->getById($id);
-			$data['view'] = 'categorias/editar';
+			$data['view'] = 'categorias/actualizar';
 			$data['nombre'] = $categoriaData[0]->nombre;
 			$data['descripcion'] = $categoriaData[0]->descripcion;
 			$this->load->view('template/body', $data);
 		}
 	}
 
-	function eliminar(){
+	function borrar(){
 		$id = $this->uri->segment(3);
 		$data['active'] = 0;
 		$data['id'] = $id;

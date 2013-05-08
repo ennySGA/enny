@@ -15,7 +15,7 @@ class Actividades extends CI_Controller {
 		$this->load->view('template/body', $data);
 	}
 
-	function nueva(){
+	function agregar(){
 		$guardar = $this->input->post('guardar');
 		if($guardar){
 			$data = array(
@@ -28,7 +28,7 @@ class Actividades extends CI_Controller {
 			redirect('areas/ver/'.$data['area_id']);
 		}else{
 			$data['nombre']='Actividades';
-			$data['view'] = 'actividades/nueva';
+			$data['view'] = 'actividades/agregar';
 			$this->load->view('template/body', $data);
 		}
 	}
@@ -44,7 +44,7 @@ class Actividades extends CI_Controller {
 
 	}
 
-	function eliminar(){
+	function borrar(){
 		$id = $this->uri->segment(3);
 		$data['active'] = 0;
 		$data['id'] = $id;
@@ -56,7 +56,7 @@ class Actividades extends CI_Controller {
 	}
 
 
-	function editar(){
+	function actualizar(){
 		$id = $this->uri->segment(3);
 		$guardar = $this->input->post('guardar');
 		if($guardar){
@@ -73,7 +73,7 @@ class Actividades extends CI_Controller {
 		}else{
 			$actividadData = $this->actividadesModel->getById($id);
 			$data['nombre']='Actividades';
-			$data['view'] = 'actividades/editar';
+			$data['view'] = 'actividades/actualizar';
 			$data['nombre'] = $actividadData[0]->nombre;
 			$data['descripcion'] = $actividadData[0]->descripcion;
 			$data['area_id'] = $actividadData[0]->area_id;

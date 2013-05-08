@@ -1,16 +1,15 @@
-
-<?php 
+	<?php 
 	$this->load->helper('html');
 	$this->load->helper('form');
 	$id = $this->uri->segment(3);
-	echo form_open('areas/editar'); ?>
+	echo form_open_multipart('programas/actualizar'); ?>
 
 		<div>
 			<input type="hidden" name="id" id='id' value=<?php echo "'".$id."'"; ?> />
 		</div>
 		
 		<div>
-			<label>Area: </label>
+			<label>Programa: </label>
 			<?php  echo form_input('nombre', set_value('nombre', $nombre)); ?>
 		</div>
 
@@ -20,8 +19,8 @@
 		</div>
 
 		<div>
-			<label>Tipo: </label>
-			<?php echo form_input('tipo', set_value('tipo', $tipo)) ?>
+			<label>Imagen: </label>
+			<?php echo form_upload('userfile[]', set_value('imagen'),'') ?>
 		</div>
 
 		<div>
@@ -30,4 +29,3 @@
 		</div>
 
 	</form>
-

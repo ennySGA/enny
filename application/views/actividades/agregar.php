@@ -1,14 +1,13 @@
-
 <?php 
 $this->load->helper('html');
 $this->load->helper('form');
-echo form_open('legislaciones/nuevo'); ?>
+echo form_open('actividades/agregar'); ?>
 <div>
-	<input type="hidden" name="nivel_id" id='nivel_id' value=<?php echo "'".$this->uri->segment(3)."'"; ?> />
+	<input type="hidden" name="area_id" id='area_id' value=<?php echo "'".$this->uri->segment(3)."'"; ?> />
 </div>
 
 <div>
-	<label>Legislación: </label>
+	<label>Actividad: </label>
 	<?php  echo form_input('nombre', set_value('nombre')); ?>
 </div>
 
@@ -23,4 +22,3 @@ echo form_open('legislaciones/nuevo'); ?>
 </div>
 
 	</form>
-

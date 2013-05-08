@@ -13,9 +13,9 @@
 	 	if($itemAct->active){
 			echo "<a href=".base_url()."index.php/usuariosa/ver/".$itemAct->id.">".$itemAct->nombre."</a>";
 			echo " ";
-			echo "<button><a href=".base_url()."index.php/usuariosa/eliminar/".$itemAct->id."> Eliminar </a></button>";
+			echo "<button><a href=".base_url()."index.php/usuariosa/borrar/".$itemAct->id."> Eliminar </a></button>";
 			echo " ";
-			echo "<button><a href=".base_url()."index.php/usuariosa/editar/".$itemAct->id.">Editar</a></button>";
+			echo "<button><a href=".base_url()."index.php/usuariosa/actualizar/".$itemAct->id.">Editar</a></button>";
 			echo "<br/>";
 		}
 	endforeach;
@@ -27,7 +27,7 @@
 	echo "<br/>No tiene usuarios aún";
 }?>
 <br/>
-<?php echo "<a href=".base_url()."index.php/usuariosa/nuevo/".$this->uri->segment(3)."> Agregar usuario </a>"?>
+<?php echo "<a href=".base_url()."index.php/usuariosa/agregar/".$this->uri->segment(3)."> Agregar usuario </a>"?>
 
 <button><a href="http://localhost/enny/index.php/categorias/categorias">Lista tipos de usuarios</a></button>
 

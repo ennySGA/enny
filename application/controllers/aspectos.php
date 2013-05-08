@@ -15,7 +15,7 @@ class Aspectos extends CI_Controller {
 		$this->load->view('template/body', $data);
 	}
 
-	function nuevo(){
+	function agregar(){
 		$guardar = $this->input->post('guardar');
 		if($guardar){
 			$data = array(
@@ -28,7 +28,7 @@ class Aspectos extends CI_Controller {
 			redirect('tipos/ver/'.$data['tipo_id']);
 		}else{
 			$data['nombre']='Aspectos ambientales';
-			$data['view'] = 'aspectos/nuevo';
+			$data['view'] = 'aspectos/agregar';
 			$this->load->view('template/body', $data);
 		}
 	}
@@ -44,7 +44,7 @@ class Aspectos extends CI_Controller {
 
 	}
 
-	function eliminar(){
+	function borrar(){
 		$id = $this->uri->segment(3);
 		$data['active'] = 0;
 		$data['id'] = $id;
@@ -56,7 +56,7 @@ class Aspectos extends CI_Controller {
 	}
 
 
-	function editar(){
+	function actualizar(){
 		$id = $this->uri->segment(3);
 		$guardar = $this->input->post('guardar');
 		if($guardar){
@@ -72,7 +72,7 @@ class Aspectos extends CI_Controller {
 
 		}else{
 			$aspectoData = $this->aspectosModel->getById($id);
-			$data['view'] = 'aspectos/editar';
+			$data['view'] = 'aspectos/actualizar';
 			$data['nombre'] = $aspectoData[0]->nombre;
 			$data['descripcion'] = $aspectoData[0]->descripcion;
 			$data['tipo_id'] = $aspectoData[0]->tipo_id;

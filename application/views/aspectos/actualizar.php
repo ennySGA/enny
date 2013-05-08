@@ -3,13 +3,13 @@
 $this->load->helper('html');
 $this->load->helper('form');
 $id = $this->uri->segment(3);
-echo form_open('legislaciones/editar'); ?>
+echo form_open('aspectos/actualizar'); ?>
 
 <div>
 	<input type="hidden" name="id" id='id' value=<?php echo "'".$id."'"; ?> />
 </div>
 <div>
-	<label>Legislación: </label>
+	<label>Aspecto: </label>
 	<?php  echo form_input('nombre', set_value('nombre', $nombre)); ?>
 </div>
 
@@ -19,7 +19,7 @@ echo form_open('legislaciones/editar'); ?>
 </div>
 
 <div>
-	<input type="hidden" name="nivel_id" id='nivel_id' value=<?php echo "'".$nivel_id."'"; ?> />
+	<input type="hidden" name="tipo_id" id='tipo_id' value=<?php echo "'".$tipo_id."'"; ?> />
 </div>
 
 <div>

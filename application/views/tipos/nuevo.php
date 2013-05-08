@@ -3,7 +3,7 @@
 	<?php 
 	$this->load->helper('html');
 	$this->load->helper('form');
-	echo form_open('tipos/addTipo'); ?>
+	echo form_open('tipos/agregar'); ?>
 
 		<div>
 			<label>Tipo: </label>

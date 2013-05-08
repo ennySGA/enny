@@ -10,11 +10,11 @@
 	<p>
 		<?php if($item->active){ ?>
 		<?php echo "<a href=".base_url()."index.php/usuarios/ver/".$item->id.">".$item->nombre"</a>";?>
-		<?php echo "<a href=".base_url()."index.php/usuarios/eliminar/".$item->id."> Eliminar </a>";?>
-		<?php echo "<a href=".base_url()."index.php/usuarios/editar/".$item->id.">Editar</a>" ?>
+		<?php echo "<a href=".base_url()."index.php/usuarios/borrar/".$item->id."> Eliminar </a>";?>
+		<?php echo "<a href=".base_url()."index.php/usuarios/actualizar/".$item->id.">Editar</a>" ?>
 		<?php } ?>
 	</p>
 
 	<?php endforeach; ?>
 
-	<?php echo anchor('usuarios/nuevo', 'Nuevo usuario'); ?>
+	<?php echo anchor('usuarios/agregar', 'Nuevo usuario'); ?>

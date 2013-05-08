@@ -17,8 +17,8 @@ class Niveles extends CI_Controller {
 		$this->load->view('template/body', $data);
 	}
 
-	function nuevoNivel(){
-		$this->load->view('niveles/nuevo');
+	function agregar(){
+		$this->load->view('niveles/agregar');
 	}
 
 	function addNivel(){
@@ -56,7 +56,7 @@ class Niveles extends CI_Controller {
 		$this->load->view('template/body', $data);
 	}
 
-	function editar(){
+	function actualizar(){
 		$guardar = $this->input->post('guardar');
 		if($guardar){
 			$data['id'] = $this->input->post('id');
@@ -68,14 +68,14 @@ class Niveles extends CI_Controller {
 		}else{
 			$id = $this->uri->segment(3);
 			$nivelData = $this->nivelesModel->getById($id);
-			$data['view'] = 'niveles/editar';
+			$data['view'] = 'niveles/actualizar';
 			$data['nombre'] = $nivelData[0]->nombre;
 			$data['descripcion'] = $nivelData[0]->descripcion;
 			$this->load->view('template/body', $data);
 		}
 	}
 
-	function eliminar(){
+	function borrar(){
 		$id = $this->uri->segment(3);
 		$data['active'] = 0;
 		$data['id'] = $id;

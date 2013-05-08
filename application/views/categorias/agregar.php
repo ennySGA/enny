@@ -3,21 +3,16 @@
 	<?php 
 	$this->load->helper('html');
 	$this->load->helper('form');
-	echo form_open('areas/addArea'); ?>
+	echo form_open('categorias/agregar'); ?>
 
 		<div>
-			<label>Area: </label>
+			<label>Tipo de usuario: </label>
 			<?php echo form_input('nombre', set_value('nombre')); ?>
 		</div>
 
 		<div>
 			<label>Descripcion: </label>
 			<?php echo form_textarea('descripcion', set_value('descripcion')) ?>
-		</div>
-
-		<div>
-			<label>Tipo: </label>
-			<?php echo form_input('tipo', set_value('tipo')) ?>
 		</div>
 
 		<div>

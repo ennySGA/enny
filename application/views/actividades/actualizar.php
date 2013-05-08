@@ -3,13 +3,13 @@
 $this->load->helper('html');
 $this->load->helper('form');
 $id = $this->uri->segment(3);
-echo form_open('aspectos/editar'); ?>
+echo form_open('actividades/actualizar'); ?>
 
 <div>
 	<input type="hidden" name="id" id='id' value=<?php echo "'".$id."'"; ?> />
 </div>
 <div>
-	<label>Aspecto: </label>
+	<label>Actividad: </label>
 	<?php  echo form_input('nombre', set_value('nombre', $nombre)); ?>
 </div>
 
@@ -19,7 +19,7 @@ echo form_open('aspectos/editar'); ?>
 </div>
 
 <div>
-	<input type="hidden" name="tipo_id" id='tipo_id' value=<?php echo "'".$tipo_id."'"; ?> />
+	<input type="hidden" name="area_id" id='area_id' value=<?php echo "'".$area_id."'"; ?> />
 </div>
 
 <div>
@@ -29,3 +29,4 @@ echo form_open('aspectos/editar'); ?>
 
 	</form>
 
+	

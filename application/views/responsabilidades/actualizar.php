@@ -1,5 +1,5 @@
 
- <form name="editar" action="http://localhost/enny/index.php/responsabilidades/editar" method="POST">
+ <form name="editar" action="http://localhost/enny/index.php/responsabilidades/actualizar" method="POST">
  <table>
  <tr>
  <td>Responsable: </td><td><?=$responsabilidad[0]->responsable?></td>

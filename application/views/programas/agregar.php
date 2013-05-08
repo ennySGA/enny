@@ -1,21 +1,20 @@
+
+
 	<?php 
 	$this->load->helper('html');
 	$this->load->helper('form');
-	$id = $this->uri->segment(3);
-	echo form_open_multipart('programas/editar'); ?>
+	echo form_open_multipart('programas/agregar'); ?>
 
 		<div>
-			<input type="hidden" name="id" id='id' value=<?php echo "'".$id."'"; ?> />
-		</div>
-		
-		<div>
 			<label>Programa: </label>
-			<?php  echo form_input('nombre', set_value('nombre', $nombre)); ?>
+		</div>
+		<div>
+			<?php  echo form_input('nombre', set_value('nombre')); ?>
 		</div>
 
 		<div>
 			<label>Descripcion: </label>
-			<?php echo form_textarea('descripcion', set_value('descripcion',$descripcion)) ?>
+			<?php echo form_textarea('descripcion', set_value('descripcion')) ?>
 		</div>
 
 		<div>

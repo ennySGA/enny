@@ -1,13 +1,14 @@
+
 <?php 
 $this->load->helper('html');
 $this->load->helper('form');
-echo form_open('actividades/nueva'); ?>
+echo form_open('aspectos/agregar'); ?>
 <div>
-	<input type="hidden" name="area_id" id='area_id' value=<?php echo "'".$this->uri->segment(3)."'"; ?> />
+	<input type="hidden" name="tipo_id" id='tipo_id' value=<?php echo "'".$this->uri->segment(3)."'"; ?> />
 </div>
 
 <div>
-	<label>Actividad: </label>
+	<label>Aspecto: </label>
 	<?php  echo form_input('nombre', set_value('nombre')); ?>
 </div>
 
@@ -22,3 +23,4 @@ echo form_open('actividades/nueva'); ?>
 </div>
 
 	</form>
+

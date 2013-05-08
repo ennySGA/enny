@@ -17,30 +17,26 @@ class Areas extends CI_Controller {
 		$this->load->view('template/body', $data);
 	}
 
-	function nuevaArea(){
+	function agregar(){
 		$data['nombre']='Áreas';
-		$data['view'] ='areas/nueva';
+		$data['view'] ='areas/agregar';
 		$this->load->view('template/body', $data);
 	}
 
 	function addArea(){
 		$guardar = $this->input->post('guardar');
-
 		if($this->input->post('guardar')){
-
 			$data = array(
 			'nombre' => $this->input->post('nombre'),
 			'descripcion' => $this->input->post('descripcion'),
 			'tipo' => $this->input->post('tipo'),
 			'active' => 1
 			);
-		
 		$this->areasModel->insertArea($data);
 		$data['nombre']='Áreas';
 		$data['areas'] = $this->areasModel->getAll();
 		$data['view'] ='areas/areas';
 		$this->load->view('template/body', $data);
-		//$this->load->view('areas/areas', $data);
 		redirect('areas/areas', 'refresh');
 		}// end if guardar
 		
@@ -59,7 +55,7 @@ class Areas extends CI_Controller {
 		$this->load->view('template/body', $data);
 	}
 
-	function editar(){
+	function actualizar(){
 		$guardar = $this->input->post('guardar');
 		if($guardar){
 			$data['id'] = $this->input->post('id');
@@ -72,7 +68,7 @@ class Areas extends CI_Controller {
 		}else{
 			$id = $this->uri->segment(3);
 			$areaData = $this->areasModel->getById($id);
-			$data['view'] = 'areas/editar';
+			$data['view'] = 'areas/actualizar';
 			$data['nombre'] = $areaData[0]->nombre;
 			$data['descripcion'] = $areaData[0]->descripcion;
 			$data['tipo'] = $areaData[0]->tipo;
@@ -80,7 +76,7 @@ class Areas extends CI_Controller {
 		}
 	}
 
-	function eliminar(){
+	function borrar(){
 		$id = $this->uri->segment(3);
 		$data['active'] = 0;
 		$data['id'] = $id;

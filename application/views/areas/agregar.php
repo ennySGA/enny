@@ -3,13 +3,11 @@
 	<?php 
 	$this->load->helper('html');
 	$this->load->helper('form');
-	echo form_open_multipart('programas/addPrograma'); ?>
+	echo form_open('areas/agregar'); ?>
 
 		<div>
-			<label>Programa: </label>
-		</div>
-		<div>
-			<?php  echo form_input('nombre', set_value('nombre')); ?>
+			<label>Area: </label>
+			<?php echo form_input('nombre', set_value('nombre')); ?>
 		</div>
 
 		<div>
@@ -18,8 +16,8 @@
 		</div>
 
 		<div>
-			<label>Imagen: </label>
-			<?php echo form_upload('userfile[]', set_value('imagen'),'') ?>
+			<label>Tipo: </label>
+			<?php echo form_input('tipo', set_value('tipo')) ?>
 		</div>
 
 		<div>
@@ -28,3 +26,4 @@
 		</div>
 
 	</form>
+

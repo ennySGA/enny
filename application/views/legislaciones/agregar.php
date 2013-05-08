@@ -2,13 +2,13 @@
 <?php 
 $this->load->helper('html');
 $this->load->helper('form');
-echo form_open('aspectos/nuevo'); ?>
+echo form_open('legislaciones/agregar'); ?>
 <div>
-	<input type="hidden" name="tipo_id" id='tipo_id' value=<?php echo "'".$this->uri->segment(3)."'"; ?> />
+	<input type="hidden" name="nivel_id" id='nivel_id' value=<?php echo "'".$this->uri->segment(3)."'"; ?> />
 </div>
 
 <div>
-	<label>Aspecto: </label>
+	<label>Legislación: </label>
 	<?php  echo form_input('nombre', set_value('nombre')); ?>
 </div>
 

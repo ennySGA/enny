@@ -15,7 +15,7 @@ class Legislaciones extends CI_Controller {
 		$this->load->view('template/body', $data);
 	}
 
-	function nuevo(){
+	function agregar(){
 		$guardar = $this->input->post('guardar');
 		if($guardar){
 			$data = array(
@@ -28,7 +28,7 @@ class Legislaciones extends CI_Controller {
 			redirect('niveles/ver/'.$data['nivel_id']);
 		}else{
 			$data['nombre']='Legislación ambiental';
-			$data['view'] = 'legislaciones/nuevo';
+			$data['view'] = 'legislaciones/agregar';
 			$this->load->view('template/body', $data);
 		}
 	}
@@ -44,7 +44,7 @@ class Legislaciones extends CI_Controller {
 
 	}
 
-	function eliminar(){
+	function borrar(){
 		$id = $this->uri->segment(3);
 		$data['active'] = 0;
 		$data['id'] = $id;
@@ -56,7 +56,7 @@ class Legislaciones extends CI_Controller {
 	}
 
 
-	function editar(){
+	function actualizar(){
 		$id = $this->uri->segment(3);
 		$guardar = $this->input->post('guardar');
 		if($guardar){
@@ -72,7 +72,7 @@ class Legislaciones extends CI_Controller {
 
 		}else{
 			$legislacionData = $this->legislacionesModel->getById($id);
-			$data['view'] = 'legislaciones/editar';
+			$data['view'] = 'legislaciones/actualizar';
 			$data['nombre'] = $legislacionData[0]->nombre;
 			$data['descripcion'] = $legislacionData[0]->descripcion;
 			$data['nivel_id'] = $legislacionData[0]->nivel_id;

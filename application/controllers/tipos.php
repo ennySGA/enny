@@ -17,9 +17,9 @@ class Tipos extends CI_Controller {
 		$this->load->view('template/body', $data);
 	}
 
-	function nuevoTipo(){
+	function agregar(){
 		$data['nombre']='Tipos de Aspectos ambientales';
-		$data['view'] ='tipos/nuevo';
+		$data['view'] ='tipos/agregar';
 		$this->load->view('template/body', $data);
 	}
 
@@ -57,7 +57,7 @@ class Tipos extends CI_Controller {
 		$this->load->view('template/body', $data);
 	}
 
-	function editar(){
+	function actualizar(){
 		$guardar = $this->input->post('guardar');
 		if($guardar){
 			$data['id'] = $this->input->post('id');
@@ -69,14 +69,14 @@ class Tipos extends CI_Controller {
 		}else{
 			$id = $this->uri->segment(3);
 			$tipoData = $this->tiposModel->getById($id);
-			$data['view'] = 'tipos/editar';
+			$data['view'] = 'tipos/actualizar';
 			$data['nombre'] = $tipoData[0]->nombre;
 			$data['descripcion'] = $tipoData[0]->descripcion;
 			$this->load->view('template/body', $data);
 		}
 	}
 
-	function eliminar(){
+	function borrar(){
 		$id = $this->uri->segment(3);
 		$data['active'] = 0;
 		$data['id'] = $id;

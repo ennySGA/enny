@@ -15,7 +15,7 @@ class Usuarios extends CI_Controller {
 		$this->load->view('template/body', $data);
 	}
 
-	function nuevo(){
+	function agregar(){
 		$guardar = $this->input->post('guardar');
 		if($guardar){
 			$data = array(
@@ -30,7 +30,7 @@ class Usuarios extends CI_Controller {
 			redirect('categorias/ver/'.$data['categoria_id']);
 		}else{
 			$data['nombre']='Usuarios';
-			$data['view'] = 'usuarios/nuevo';
+			$data['view'] = 'usuarios/agregar';
 			$this->load->view('template/body', $data);
 		}
 	}
@@ -46,7 +46,7 @@ class Usuarios extends CI_Controller {
 
 	}
 
-	function eliminar(){
+	function borrar(){
 		$id = $this->uri->segment(3);
 		$data['active'] = 0;
 		$data['id'] = $id;
@@ -58,7 +58,7 @@ class Usuarios extends CI_Controller {
 	}
 
 
-	function editar(){
+	function actualizar(){
 		$id = $this->uri->segment(3);
 		$guardar = $this->input->post('guardar');
 		if($guardar){
@@ -75,7 +75,7 @@ class Usuarios extends CI_Controller {
 
 		}else{
 			$usuarioData = $this->usuariosModel->getById($id);
-			$data['view'] = 'usuarios/editar';
+			$data['view'] = 'usuarios/actualizar';
 			$data['nombre'] = $usuarioData[0]->nombre;
 			$data['apellido'] = $usuarioData[0]->apellido;
 			$data['correo'] = $usuarioData[0]->correo;

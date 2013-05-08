@@ -11,13 +11,13 @@
 		<p>
 		<?php if($item->active){ ?>
 		<?php echo "<a href=".base_url()."index.php/tipos/ver/".$item->id.">".$item->nombre."</a>";?>
-		<?php echo "<a href=".base_url()."index.php/tipos/eliminar/".$item->id."> Eliminar </a>";?>
-		<?php echo "<a href=".base_url()."index.php/tipos/editar/".$item->id.">Editar</a>" ?>
+		<?php echo "<a href=".base_url()."index.php/tipos/borrar/".$item->id."> Eliminar </a>";?>
+		<?php echo "<a href=".base_url()."index.php/tipos/actualizar/".$item->id.">Editar</a>" ?>
 		<?php } ?>
 		</p>
 
 	<?php endforeach;?>
 
 
-	<?php echo anchor('tipos/nuevoTipo', 'Nuevo tipo');?>
+	<?php echo anchor('tipos/agregar', 'Nuevo tipo');?>
 

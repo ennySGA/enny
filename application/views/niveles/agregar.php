@@ -1,18 +1,17 @@
 
-
 	<?php 
 	$this->load->helper('html');
 	$this->load->helper('form');
-	echo form_open('categorias/addCategoria'); ?>
+	echo form_open('niveles/agregar'); ?>
 
 		<div>
-			<label>Tipo de usuario: </label>
+			<label>Nivel: </label>
 			<?php echo form_input('nombre', set_value('nombre')); ?>
 		</div>
 
 		<div>
-			<label>Descripcion: </label>
-			<?php echo form_textarea('descripcion', set_value('descripcion')) ?>
+			<label>Descripción: </label>
+			<?php echo form_textarea('descripcion', set_value('descripcion')); ?>
 		</div>
 
 		<div>
@@ -21,4 +20,3 @@
 		</div>
 
 	</form>
-
