@@ -2,7 +2,7 @@
 <?php 
 $this->load->helper('html');
 $this->load->helper('form');
-echo form_open('usuarios/agregar'); ?>
+echo form_open('usuariosa/agregar'); ?>
 <div>
 	<input type="hidden" name="categoria_id" id='categoria_id' value=<?php echo "'".$this->uri->segment(3)."'"; ?> />
 </div>

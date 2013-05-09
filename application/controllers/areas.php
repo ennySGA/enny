@@ -11,14 +11,14 @@ class Areas extends CI_Controller {
      }
 
 	function index(){
-		$data['nombre']='Áreas';
+		$data['nombre']='Areas';
 		$data['areas'] = $this->areasModel->getAll();
 		$data['view'] ='areas/areas';
 		$this->load->view('template/body', $data);
 	}
 
 	function agregar(){
-		$data['nombre']='Áreas';
+		$data['nombre']='Areas';
 		$data['view'] ='areas/agregar';
 		$this->load->view('template/body', $data);
 	}
@@ -41,7 +41,7 @@ class Areas extends CI_Controller {
 		}// end if guardar
 		
 		else{
-			$data['nombre']='Áreas';
+			$data['nombre']='Areas';
 			$data['view'] ='areas/addArea';
 			$this->load->view('template/body', $data);
 		}

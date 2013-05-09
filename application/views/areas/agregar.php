@@ -3,7 +3,7 @@
 	<?php 
 	$this->load->helper('html');
 	$this->load->helper('form');
-	echo form_open('areas/agregar'); ?>
+	echo form_open('areas/addArea'); ?>
 
 		<div>
 			<label>Area: </label>

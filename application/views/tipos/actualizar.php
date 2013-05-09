@@ -3,7 +3,7 @@
 	$this->load->helper('html');
 	$this->load->helper('form');
 	$id = $this->uri->segment(3);
-	echo form_open('tipos/actualziar'); ?>
+	echo form_open('tipos/actualizar'); ?>
 
 		<div>
 			<input type="hidden" name="id" id='id' value=<?php echo "'".$id."'"; ?> />

@@ -3,7 +3,7 @@
 	<?php 
 	$this->load->helper('html');
 	$this->load->helper('form');
-	echo form_open('categorias/agregar'); ?>
+	echo form_open('categorias/addCategoria'); ?>
 
 		<div>
 			<label>Tipo de usuario: </label>
