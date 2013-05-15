@@ -7,11 +7,14 @@
 	<link rel="stylesheet" href="/enny/assets/css/bootstrap-responsive.min.css" />
 	<link rel="stylesheet" href="/enny/assets/css/fullcalendar.css" />	
 	<link rel="stylesheet" href="/enny/assets/css/unicorn.main.css" />
+	<link rel="stylesheet" href="/enny/assets/css/uniform.css" />
 	<link rel="stylesheet" href="/enny/assets/css/unicorn.grey.css" class="skin-color" />
 	<link rel="stylesheet" href="/enny/assets/css/uniform.css" class="skin-color" />
 	<link rel="stylesheet" href="/enny/assets/css/select2.css" />		
 	<link rel="stylesheet" href="/enny/assets/css/unicorn.main.css" />
 	<link rel="stylesheet" href="/enny/assets/css/style.css">
+	<link rel="stylesheet" href="/enny/assets/css/jquery-ui.css" />
+
 
 </head>
 <body>

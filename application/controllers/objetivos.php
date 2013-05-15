@@ -47,6 +47,38 @@ class objetivos extends CI_Controller{
 		}
 		$data['id']=$id;
 		if($data['objetivos']){
+			/*EDUARDO: Comienza validacion de form Metas*/
+			$this->load->library('form_validation');
+
+			$config=array(
+				array(
+	             'field'   => 'nombre',
+	             'label'   => 'Nombre',
+	             'rules'   => 'required'
+                ),
+                array(
+	             'field'   => 'fecha_meta',
+	             'label'   => 'Fecha de la meta',
+	             'rules'   => 'required'
+                ),
+                array(
+	             'field'   => 'edo_actual',
+	             'label'   => 'Estado actual',
+	             'rules'   => 'required'
+                ),
+                array(
+	             'field'   => 'edo_lograr',
+	             'label'   => 'Estado a lograr',
+	             'rules'   => 'required'
+                )
+			);
+			$this->form_validation->set_rules($config);
+			if ($this->form_validation->run() == true){
+				$this->load->model('MetasModel');
+				$this->MetasModel->create();
+				$data['message']='Meta dada de alta correctamente';
+			}
+
 			$data['nombre']='Objetivos';
 			$data['view']='objetivos/single';
 			$data['title']='Objetivo';
