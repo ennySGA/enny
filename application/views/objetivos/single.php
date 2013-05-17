@@ -191,7 +191,7 @@ if($widgets) foreach ($widgets as $widget): ?>
 			<?php
 			echo form_fieldset_close();
 
-			echo form_submit('submit', 'Guardar', 'class="btn btn-primary"');
+			echo form_submit('submit_meta', 'Enviar', 'class="btn btn-primary"');
 			?>
 			<a data-dismiss="modal" class="btn btn-danger" href="#">Cerrar</a>
 		</div>
@@ -203,21 +203,61 @@ if($widgets) foreach ($widgets as $widget): ?>
 		
 	</div>
 </div>
-
+<!-- ***************************** Modal Evento	***************************** -->
 <div id="nuevo-event" class="modal hide" style="display: none;" aria-hidden="true">
 	<div class="modal-header">
 		<button data-dismiss="modal" class="close" type="button">×</button>
 		<h3>Eventos</h3>
-
-		
 		<div class="modal-body">
 			<div class="control-group">
-				
+				<?php
+					$publicos=array(
+						'todos'=>'todos',
+						'empleados'=>'empleados',
+						'niños'=>'niños',
+						'vecinos'=>'vecinos',
+						'clientes'=>'clientes',
+						'proveedores'=>'proveedores',
+						'ejecutivos'=>'ejecutivos',
+					);
+					$hidden=array('objetivo_id'=>$id);
+
+					echo form_open('objetivos/single/'.$id, '', $hidden);
+					echo form_fieldset('Evento nuevo');
+
+					echo "<p>Nombre</p>";
+					echo form_input('nombre');
+
+					echo "<p>Descripción</p>";
+					echo form_textarea('descripcion');
+
+					echo "<p>fecha del evento</p>";
+					echo form_input('fecha_evento', '', 'class="datepicker"');
+
+					echo "<p>Público</p>";
+					echo form_dropdown('publico', $publicos);
+
+					echo "<p>Opciones</p>";
+					echo form_checkbox('publicar', 'accept', false)."Publicar.<br />";
+					echo form_checkbox('interno', 'accept', false)."Interno.";
+
+					echo "<p>Responsable</p>";
+					echo form_input('responsable');
+
+					echo "<p>Lugar</p>";
+					echo form_input('lugar');
+				 ?>
 				
 				
 			</div>
+	</div>
 		<div class="modal-footer">
+			<?php 
+			echo form_fieldset_close();
+			echo form_submit('submit_evento', 'Crear Evento', 'class="btn btn-primary"');
+			echo form_close();
+			 ?>
 			<a data-dismiss="modal" class="btn btn-danger" href="#">Cerrar</a>
 		</div>
-	</div>
+</div>
 </div>
