@@ -5,7 +5,7 @@ class Legislaciones extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('legislacionesModel');
-		$this->load->model('nivelesModel');
+		$this->load->model('tipos_legislacionesModel');
      }
 
 	function index(){
@@ -25,7 +25,7 @@ class Legislaciones extends CI_Controller {
 				'active' => 1
 				);
 			$this->legislacionesModel->insertLegislacion($data);
-			redirect('niveles/ver/'.$data['nivel_id']);
+			redirect('tipos_legislaciones/ver/'.$data['nivel_id']);
 		}else{
 			$data['nombre']='Legislación ambiental';
 			$data['view'] = 'legislaciones/agregar';
@@ -37,7 +37,7 @@ class Legislaciones extends CI_Controller {
 			$id=$this->uri->segment(3);
 			$data['legislaciones'] = $this->legislacionesModel->getById($id);
 			echo $data['legislaciones'][0]->nivel_id;
-			$data['niveles'] = $this->nivelesModel->getById($id);
+			$data['tipos_legislaciones'] = $this->tipos_legislacionesModel->getById($id);
 			$data['nombre']='Legislación ambiental';
 			$data['view'] ='legislaciones/ver';
 			$this->load->view('template/body', $data);
@@ -52,7 +52,7 @@ class Legislaciones extends CI_Controller {
 		$nivel_id = $legislacion[0]->nivel_id;
 		//var_dump($cosa);
 		$this->legislacionesModel->deleteLegislacion($data);
-		redirect('niveles/ver/'.$nivel_id);
+		redirect('tipos_legislaciones/ver/'.$nivel_id);
 	}
 
 
@@ -68,7 +68,7 @@ class Legislaciones extends CI_Controller {
 				);
 			$this->legislacionesModel->updateLegislacion($data);
 			//$this->legislacionesModel->insertlegislacion($data);
-			redirect('niveles/ver/'.$data['nivel_id']);
+			redirect('tipos_legislaciones/ver/'.$data['nivel_id']);
 
 		}else{
 			$legislacionData = $this->legislacionesModel->getById($id);

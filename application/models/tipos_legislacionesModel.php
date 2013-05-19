@@ -1,6 +1,6 @@
 <?php
 
-class CategoriasModel extends CI_Model {
+class Tipos_legislacionesModel extends CI_Model {
 
 	function __construct() {
 		parent::__construct();
@@ -8,7 +8,7 @@ class CategoriasModel extends CI_Model {
 	}
 
 	function getAll(){
-		$data = $this->db->get('categorias');
+		$data = $this->db->get('niveles');
 		if ($data->num_rows() > 0) {
 			return $data->result();
 		}else{
@@ -18,7 +18,7 @@ class CategoriasModel extends CI_Model {
 
 	function getById($id){
 		$this->db->where('id',$id);
-		$data = $this->db->get('categorias');
+		$data = $this->db->get('niveles');
 		if($data->num_rows() > 0){
 			return $data->result();
 		}else{
@@ -26,24 +26,24 @@ class CategoriasModel extends CI_Model {
 		}
 	}
 
-	function insertCategoria($data){
-		$this->db->insert('categorias', $data);
+	function insertNivel($data){
+		$this->db->insert('niveles', $data);
 	}
 
-	function updateCategoria($data){
+	function updateNivel($data){
 		$id = $data['id'];
 		$newData = array(
 						'nombre' => $data['nombre'],
 						'descripcion' => $data['descripcion']
-			);
+		);
 		$this->db->where('id', $id);
-		$this->db->update('categorias', $newData);
+		$this->db->update('niveles', $newData);
 	}
 
 
-	function deletecategoria($data){
+	function deleteNivel($data){
 		$newData = array('active' => 0);
 		$this->db->where('id', $data['id']);
-		$this->db->update('categorias', $newData);
+		$this->db->update('niveles', $newData);
 	}
 }

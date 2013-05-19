@@ -12,7 +12,7 @@
  		</tr>
  		</thead>
  		<tbody>
- 		<?php foreach ($responsabilidades as $r):?>
+ 		<?php if ($responsabilidades) foreach ($responsabilidades as $r):?>
  		<tr>
 
  		<td><form name="alta" action="http://localhost/enny/index.php/responsabilidades/borrar/" method="POST"> 		

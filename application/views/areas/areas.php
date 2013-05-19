@@ -7,7 +7,7 @@
 
 					<h4>Áreas:</h4>
 
-					<?php foreach($areas as $item):?>
+					<?php if ($areas) foreach($areas as $item):?>
 
 						<p>
 						<?php if($item->active){ ?>

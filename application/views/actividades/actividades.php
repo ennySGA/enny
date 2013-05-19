@@ -4,7 +4,7 @@
 	?>
 	<h4>Actividades:</h4>
 
-	<?php foreach ($actividades as $item): ?>
+	<?php if ($actividades) foreach ($actividades as $item): ?>
 	
 	<p>
 		<?php if($item->active){ ?>

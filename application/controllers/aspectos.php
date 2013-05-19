@@ -5,7 +5,7 @@ class Aspectos extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('aspectosModel');
-		$this->load->model('tiposModel');
+		$this->load->model('tipos_aspectosModel');
      }
 
 	function index(){
@@ -25,7 +25,7 @@ class Aspectos extends CI_Controller {
 				'active' => 1
 				);
 			$this->aspectosModel->insertAspecto($data);
-			redirect('tipos/ver/'.$data['tipo_id']);
+			redirect('tipos_aspectos/ver/'.$data['tipo_id']);
 		}else{
 			$data['nombre']='Aspectos ambientales';
 			$data['view'] = 'aspectos/agregar';
@@ -36,8 +36,7 @@ class Aspectos extends CI_Controller {
 	function ver(){
 			$id=$this->uri->segment(3);
 			$data['aspectos'] = $this->aspectosModel->getById($id);
-			echo $data['aspectos'][0]->tipo_id;
-			$data['tipos'] = $this->tiposModel->getById($id);
+			$data['tipos'] = $this->tipos_aspectosModel->getById($id);
 			$data['nombre']='Aspectos ambientales';
 			$data['view'] ='aspectos/ver';
 			$this->load->view('template/body', $data);
@@ -52,7 +51,7 @@ class Aspectos extends CI_Controller {
 		$tipo_id = $aspecto[0]->tipo_id;
 		//var_dump($cosa);
 		$this->aspectosModel->deleteAspecto($data);
-		redirect('tipos/ver/'.$tipo_id);
+		redirect('tipos_aspectos/ver/'.$tipo_id);
 	}
 
 
@@ -68,7 +67,7 @@ class Aspectos extends CI_Controller {
 				);
 			$this->aspectosModel->updateAspecto($data);
 			//$this->aspectosModel->insertaspecto($data);
-			redirect('tipos/ver/'.$data['tipo_id']);
+			redirect('tipos_aspectos/ver/'.$data['tipo_id']);
 
 		}else{
 			$aspectoData = $this->aspectosModel->getById($id);

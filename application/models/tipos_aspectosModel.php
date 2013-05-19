@@ -1,6 +1,6 @@
 <?php
 
-class TiposModel extends CI_Model {
+class Tipos_aspectosModel extends CI_Model {
 
 	function __construct() {
 		parent::__construct();

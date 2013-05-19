@@ -1,9 +1,7 @@
-
-
-	<?php 
+<?php 
 	$this->load->helper('html');
 	$this->load->helper('form');
-	echo form_open('tipos/agregar'); ?>
+	echo form_open('tipos_aspectos/addTipo'); ?>
 
 		<div>
 			<label>Tipo: </label>

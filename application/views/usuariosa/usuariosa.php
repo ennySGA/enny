@@ -5,7 +5,7 @@
 	?>
 	<h4>Usuarios:</h4>
 
-	<?php foreach ($usuarios as $item): ?>
+	<?php if ($usuarios) foreach ($usuarios as $item): ?>
 	
 	<p>
 		<?php if($item->active){ ?>

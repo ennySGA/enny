@@ -5,7 +5,7 @@ class Usuariosa extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('usuariosaModel');
-		$this->load->model('categoriasModel');
+		$this->load->model('tipos_usuariosaModel');
      }
 
 	function index(){
@@ -27,7 +27,7 @@ class Usuariosa extends CI_Controller {
 				'active' => 1
 				);
 			$this->usuariosaModel->insertUsuario($data);
-			redirect('categorias/ver/'.$data['categoria_id']);
+			redirect('tipos_usuariosa/ver/'.$data['categoria_id']);
 		}else{
 			$data['nombre']='Usuarios';
 			$data['view'] = 'usuariosa/agregar';
@@ -38,9 +38,8 @@ class Usuariosa extends CI_Controller {
 	function ver(){
 			$id=$this->uri->segment(3);
 			$data['usuarios'] = $this->usuariosaModel->getById($id);
-			echo $data['usuarios'][0]->categoria_id;
 			$data['nombre']='Usuarios';
-			$data['categorias'] = $this->categoriasModel->getById($id);
+			$data['tipos_usuariosa'] = $this->tipos_usuariosaModel->getById($id);
 			$data['view'] ='usuariosa/ver';
 			$this->load->view('template/body', $data);
 
@@ -54,7 +53,7 @@ class Usuariosa extends CI_Controller {
 		$categoria_id = $usuario[0]->categoria_id;
 		//var_dump($cosa);
 		$this->usuariosaModel->deleteUsuario($data);
-		redirect('categorias/ver/'.$categoria_id);
+		redirect('tipos_usuariosa/ver/'.$categoria_id);
 	}
 
 
@@ -71,7 +70,7 @@ class Usuariosa extends CI_Controller {
 				);
 			$this->usuariosaModel->updateUsuario($data);
 			//$this->usuariosaModel->insertusuario($data);
-			redirect('categorias/ver/'.$data['categoria_id']);
+			redirect('tipos_usuariosa/ver/'.$data['categoria_id']);
 
 		}else{
 			$usuarioData = $this->usuariosaModel->getById($id);

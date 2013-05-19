@@ -47,10 +47,10 @@
 			<ul>
 				<li class="active"><a href="<?php echo base_url()."index.php/programas"; ?>"><i class="icon icon-home"></i> <span>Inicio</span></a></li>
 				<li><a href="<?php echo base_url()."index.php/programas"; ?>"><i class="icon icon-th-list"></i> <span>Programas</span></a></li>
-				<li><a href="<?php echo base_url()."index.php/categorias"; ?>"><i class="icon icon-th-list"></i> <span>Usuarios</span></a></li>
+				<li><a href="<?php echo base_url()."index.php/tipos_usuariosa"; ?>"><i class="icon icon-th-list"></i> <span>Usuarios</span></a></li>
 				<li><a href="<?php echo base_url()."index.php/areas"; ?>"><i class="icon icon-tint"></i> <span>Áreas</span></a></li>
-				<li><a href="<?php echo base_url()."index.php/tipos"; ?>"><i class="icon icon-pencil"></i> <span>Aspectos ambientales</span></a></li>
-				<li><a href="<?php echo base_url()."index.php/niveles"; ?>"><i class="icon icon-th"></i> <span>Legislación ambiental</span></a></li>
+				<li><a href="<?php echo base_url()."index.php/tipos_aspectos"; ?>"><i class="icon icon-pencil"></i> <span>Aspectos ambientales</span></a></li>
+				<li><a href="<?php echo base_url()."index.php/tipos_legislaciones"; ?>"><i class="icon icon-th"></i> <span>Legislación ambiental</span></a></li>
 				<li class="submenu">
 					<a href="#"><i class="icon icon-file"></i> <span>Configuración</span></a>
 					<ul>

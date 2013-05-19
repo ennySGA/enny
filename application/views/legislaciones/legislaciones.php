@@ -5,7 +5,7 @@
 	?>
 	<h4>Legislaciones:</h4>
 
-	<?php foreach ($legislaciones as $item): ?>
+	<?php if ($legislaciones) foreach ($legislaciones as $item): ?>
 	
 	<p>
 		<?php if($item->active){ ?>

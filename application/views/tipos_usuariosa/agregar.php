@@ -1,9 +1,7 @@
-
-
 	<?php 
 	$this->load->helper('html');
 	$this->load->helper('form');
-	echo form_open('categorias/addCategoria'); ?>
+	echo form_open('tipos_usuariosa/addCategoria'); ?>
 
 		<div>
 			<label>Tipo de usuario: </label>
@@ -12,7 +10,7 @@
 
 		<div>
 			<label>Descripcion: </label>
-			<?php echo form_textarea('descripcion', set_value('descripcion')) ?>
+			<?php echo form_textarea('descripcion', set_value('descripcion')); ?>
 		</div>
 
 		<div>

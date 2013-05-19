@@ -1,6 +1,6 @@
 
 <?php 
-$this->load->model('tiposModel');
+$this->load->model('tipos_aspectosModel');
 foreach ($aspectos as $item): 
 
  	echo "Aspecto: ".$item->nombre;
@@ -8,7 +8,7 @@ foreach ($aspectos as $item):
  	echo "Descripción: ".$item->descripcion;
  	echo "<br />";
  	$id = $item->tipo_id;
- 	$area = $this->tiposModel->getById($id);
+ 	$area = $this->tipos_aspectosModel->getById($id);
  	
 
 endforeach; ?>

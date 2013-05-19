@@ -5,7 +5,7 @@
 	?>
 	<h4>Aspectos:</h4>
 
-	<?php foreach ($aspectos as $item): ?>
+	<?php if ($aspectos) foreach ($aspectos as $item): ?>
 	
 	<p>
 		<?php if($item->active){ ?>

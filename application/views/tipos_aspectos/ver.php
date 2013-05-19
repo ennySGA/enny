@@ -1,5 +1,5 @@
 
-<?php foreach ($tipos as $item): ?>
+<?php foreach ($tipos_aspectos as $item): ?>
 	<br/>
 	<?php echo "Tipo: ".$item->nombre; ?>
 	<br/>
@@ -31,5 +31,5 @@
 <br/>
 <?php echo "<a href=".base_url()."index.php/aspectos/agregar/".$this->uri->segment(3)."> Agregar aspecto </a>"?>
 
-<button><a href="http://localhost/enny/index.php/tipos/tipos">Lista tipos</a></button>
+<button><a href="http://localhost/enny/index.php/tipos_aspectos/tipos_aspectos">Lista tipos</a></button>
 

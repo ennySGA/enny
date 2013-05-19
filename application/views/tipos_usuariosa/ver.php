@@ -1,5 +1,5 @@
 
-<?php foreach ($categorias as $item): ?>
+<?php foreach ($tipos_usuariosa as $item): ?>
 	<br/>
 	<?php echo "Tipo de usuario: ".$item->nombre; ?>
 	<br/>
@@ -29,5 +29,5 @@
 <br/>
 <?php echo "<a href=".base_url()."index.php/usuariosa/agregar/".$this->uri->segment(3)."> Agregar usuario </a>"?>
 
-<button><a href="http://localhost/enny/index.php/categorias/categorias">Lista tipos de usuarios</a></button>
+<button><a href="http://localhost/enny/index.php/tipos_usuariosa/tipos_usuariosa">Lista tipos de usuarios</a></button>
 

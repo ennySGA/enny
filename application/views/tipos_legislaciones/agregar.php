@@ -2,7 +2,7 @@
 	<?php 
 	$this->load->helper('html');
 	$this->load->helper('form');
-	echo form_open('niveles/addNivel'); ?>
+	echo form_open('tipos_legislaciones/addNivel'); ?>
 
 		<div>
 			<label>Nivel: </label>

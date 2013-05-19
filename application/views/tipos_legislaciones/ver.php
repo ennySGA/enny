@@ -1,5 +1,5 @@
 
-<?php foreach ($niveles as $item): ?>
+<?php foreach ($tipos_legislaciones as $item): ?>
 	<br/>
 	<?php echo "Nivel: ".$item->nombre; ?>
 	<br/>
@@ -31,5 +31,5 @@
 <br/>
 <?php echo "<a href=".base_url()."index.php/legislaciones/agregar/".$this->uri->segment(3)."> Agregar legislación </a>"?>
 
-<button><a href="http://localhost/enny/index.php/niveles/niveles">Lista niveles</a></button>
+<button><a href="http://localhost/enny/index.php/tipos_legislaciones/tipos_legislaciones">Lista tipos_legislaciones</a></button>
 
