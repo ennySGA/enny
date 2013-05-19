@@ -6,6 +6,7 @@ class programas extends CI_Controller{
 		$this->load->helper('url');
 		$this->load->model('programasModel');
 		$this->load->model('objetivosModel');
+		$this->load->model('metasModel');
 		$this->load->library('upload');
 
 
@@ -121,6 +122,9 @@ class programas extends CI_Controller{
 		$id=$this->uri->segment(3);
 		$data['programas'] = $this->programasModel->getById($id);
 		$data['objetivos'] = $this->objetivosModel->getByProgramaId($id);
+
+		$data['metas']=$this->metasModel->getByObjetivoId('3');
+
 		$data['nombre']='Programas';
 		$data['view'] ='programas/ver';
 		$this->load->view('template/template', $data);

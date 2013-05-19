@@ -49,6 +49,37 @@
 		</div>	
 	</div>
 
+	<div class="widget-box">
+		<div class='widget-title'>
+			<span class="icon">
+				<i class="icon-road"></i>
+			</span>
+			<h5>Metas</h5>
+		</div>
+		
+		<div class="widget-content">
+			<table class='table'>
+				<tr>
+					<th>nombre</th>
+					<th>descripcion</th>
+					<th>actual</th>
+					<th>lograr</th>
+					<th>tipo</th>
+				</tr>
+				<?php foreach($metas as $meta){ ?>
+				<tr>
+					<td><?php echo $meta->nombre; ?></td>
+					<td><?php echo $meta->descripcion; ?></td>
+					<td><?php echo $meta->edo_actual; ?></td>
+					<td><?php echo $meta->edo_lograr; ?></td>
+					<td><?php echo $meta->tipo; ?></td>
+				</tr>
+				<?php } ?>
+			</table>
+
+		</div>
+	</div>
+
 	<div class="row-fluid">
 		<div class="span12 center" style="text-align: center;">	
 			<?php echo anchor(base_url()."index.php/objetivos/nuevo/".$this->uri->segment(3), '<button class="btn btn-info">Agregar Objetivo</button>');?>

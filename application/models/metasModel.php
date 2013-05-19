@@ -32,6 +32,12 @@ class MetasModel extends CI_Model{
 		$this->db->insert('Metas', $datos);
 	}
 
+	public function getByObjetivoId($objetivo_id){
+		$this->db->where('objetivo_id',$objetivo_id);
+		$query=$this->db->get('metas');
+		return $query->result();
+	}
+
 	public function getAll(){
 		$query=$this->db->get('Metas');
 		return $query->result();
