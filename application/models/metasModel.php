@@ -1,45 +1,27 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+class metasModel extends CI_Model{
 
-class MetasModel extends CI_Model{
-	public function create(){
-		$cuantificable=false;
-		if($this->input->post('cuantificable')){
-			$cuantificable=true;
-		}
-		$promover=false;
-		if($this->input->post('promover')){
-			$promover=true;
-		}
-		$usar_menos=false;
-		if($this->input->post('usar_menos')){
-			$usar_menos=true;
-		}
-		$datos=array(
-			'nombre'=>$this->input->post('nombre'),
-			'objetivo_id'=>$this->input->post('objetivo_id'),
-			'descripcion'=>$this->input->post('descripcion'),
-			'edo_actual'=>$this->input->post('edo_actual'),
-			'edo_inicial'=>$this->input->post('edo_actual'),
-			'edo_lograr'=>$this->input->post('edo_lograr'),
-			'metrica'=>$this->input->post('metrica'),
-			'fecha_meta'=>$this->input->post('fecha_meta'),
-			'cuantificable'=>$cuantificable,
-			'tipo'=>$this->input->post('tipo'),
-			'promover'=>$promover,
-			'usar_menos'=>$usar_menos,
-		);
-
-		$this->db->insert('Metas', $datos);
+	public function add($datos){
+		$this->db->insert('metas', $datos);
+		return $this->db->insert_id();
 	}
 
-	public function getByObjetivoId($objetivo_id){
-		$this->db->where('objetivo_id',$objetivo_id);
+	public function select(){
 		$query=$this->db->get('metas');
 		return $query->result();
 	}
-
-	public function getAll(){
-		$query=$this->db->get('Metas');
-		return $query->result();
+	function delete($id){
+		$this->db->delete('metas', array('id' => $id));
+	}
+	function getAllByW($id){
+		$this->db->from('metas');
+		$this->db->select('metas.*');
+		$this->db->where('metas.widgetobj_id',$id);
+		$data=$this->db->get();
+		if ($data->num_rows() > 0) {
+			return $data->result();
+		}else{
+			return FALSE;
+		}	
 	}
 }

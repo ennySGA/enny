@@ -2,6 +2,7 @@
 class login extends CI_Controller{
 	function index()
 	{
+		$data['nombre']='Login';	
 		$data['view'] = 'login/loginForm';
 		$this->load->view('template/body',$data);	
 	}

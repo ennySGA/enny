@@ -45,4 +45,3 @@ if($widget->rows)foreach ($widget->rows as $row) {
 		</div>
 		</form>
 	</div>
-</div>	
