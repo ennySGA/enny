@@ -7,17 +7,17 @@
 
 					<h4>Áreas:</h4>
 
-					<?php if ($areas) foreach($areas as $item):?>
+					<?php foreach($areas as $item):?>
 
 						<p>
 						<?php if($item->active){ ?>
 						<?php echo "<a href=".base_url()."index.php/areas/ver/".$item->id.">".$item->nombre."</a>";?>
-						<?php echo "<a href=".base_url()."index.php/areas/borrar/".$item->id."> Eliminar </a>";?>
-						<?php echo "<a href=".base_url()."index.php/areas/actualizar/".$item->id.">Editar</a>" ?>
+						<?php echo "<a href=".base_url()."index.php/areas/eliminar/".$item->id."> Eliminar </a>";?>
+						<?php echo "<a href=".base_url()."index.php/areas/editar/".$item->id.">Editar</a>" ?>
 						<?php } ?>
 						</p>
 
 					<?php endforeach;?>
 
 
-					<?php echo anchor('areas/agregar', 'Nueva Area');?>
+					<?php echo anchor('areas/nuevaArea', 'Nueva Area');?>

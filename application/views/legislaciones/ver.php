@@ -1,6 +1,6 @@
 
 <?php 
-$this->load->model('tipos_legislacionesModel');
+$this->load->model('nivelesModel');
 foreach ($legislaciones as $item): 
 
  	echo "Legislación: ".$item->nombre;
@@ -8,7 +8,7 @@ foreach ($legislaciones as $item):
  	echo "Descripción: ".$item->descripcion;
  	echo "<br />";
  	$id = $item->nivel_id;
- 	$nivel = $this->tipos_legislacionesModel->getById($id);
+ 	$nivel = $this->nivelesModel->getById($id);
  	
 
 endforeach; ?>

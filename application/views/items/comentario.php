@@ -1,4 +1,4 @@
-<div class="widget-title"><span class="icon"><i class="icon-list-alt"></i></span><h5><?php echo $widget->widget_nombre; ?></h5><div class="buttons"><a href="#myAlert<?php echo $cont;?>" data-toggle="modal" class="btn btn-mini"><i class="icon-pencil"></i> Comentar</a><a href="<?php echo base_url()?>index.php/objetivos/delItem/<?php echo $widget->widgetobj_id.'/'.$id; ?>" class="btn btn-mini"><i class="icon-trash"></i> Borrar</a></div></div>
+<div class="widget-title"><span class="icon"><i class="icon-list-alt"></i></span><h5><?php echo $widget->widget_nombre; ?></h5><div class="buttons"><a href="#myAlert<?php echo $cont;?>" data-toggle="modal" class="btn btn-mini"><i class="icon-pencil"></i> Comentar</a><a href="<?php echo base_url()?>index.php/items/delItem/<?php echo $widget->widgetobj_id.'/'.$id; ?>" class="btn btn-mini"><i class="icon-trash"></i> Borrar</a></div></div>
 <div class="widget-content">
 
 <ul class="recent-posts">
@@ -14,7 +14,7 @@
 					<p>
 						<p><?php echo $row->cuerpo; ?></p>
 					</p>
-					<a href="#mec<?php echo $row->id;?>" data-toggle="modal" class="btn btn-primary btn-mini">Editar</a> <a href="#" class="btn btn-success btn-mini">Publicar</a> <a href="<?php echo base_url().'index.php/objetivos/borrarComent/'.$row->id.'/'.$id;?>" class="btn btn-danger btn-mini" >Borrar</a>
+					<a href="#mec<?php echo $row->id;?>" data-toggle="modal" class="btn btn-primary btn-mini">Editar</a> <a href="#" class="btn btn-success btn-mini">Publicar</a> <a href="<?php echo base_url().'index.php/items/borrarComent/'.$row->id.'/'.$id;?>" class="btn btn-danger btn-mini" >Borrar</a>
 				</div>
 			</li>
 
@@ -24,7 +24,7 @@
 					<button data-dismiss="modal" class="close" type="button">×</button>
 					<h3><?php echo $widget->widget_nombre; ?></h3>
 				</div>
-				<form id='ftext-<?php echo $cont; ?>' action='<?php echo base_url(); ?>index.php/objetivos/saveItem/<?php echo $id; ?>' method='POST' class='form-vertical'>
+				<form id='ftext-<?php echo $cont; ?>' action='<?php echo base_url(); ?>index.php/items/saveItemComments/<?php echo $id; ?>' method='POST' class='form-vertical'>
 					<div class='modal-body'>
 						<input type='hidden' value='<?php echo $widget->widgetobj_id;?>' name='w_id'>
 						<input type='hidden' value='<?php echo $row->id;?>' name='id'>
@@ -61,7 +61,7 @@
 		<button data-dismiss="modal" class="close" type="button">×</button>
 		<h3><?php echo $widget->widget_nombre; ?></h3>
 	</div>
-	<form id='ftext-<?php echo $cont; ?>' action='<?php echo base_url(); ?>index.php/objetivos/saveItem/<?php echo $id; ?>' method='POST' class='form-vertical'>
+	<form id='ftext-<?php echo $cont; ?>' action='<?php echo base_url(); ?>index.php/items/saveItemComments/<?php echo $id; ?>' method='POST' class='form-vertical'>
 		<div class='modal-body'>
 			<input type='hidden' value='<?php echo $widget->widgetobj_id;?>' name='w_id'>
 			<input type='hidden' value='<?php echo $user_id; ?>' name='usuario_id'>
@@ -84,4 +84,3 @@
 </div>
 
 </div>
-</div>	

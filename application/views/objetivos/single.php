@@ -3,6 +3,7 @@
 	En esta sección podrás gestionar el <strong>objetivo</strong> que seleccionaste, agregando diferentes tipos de <strong>elementos</strong>.
 	<a href="#" data-dismiss="alert" class="close">×</a>
 </div>
+
 <?php if(isset($message)){ ?>
 	<div class="alert alert-success">
 		<?php echo $message; ?>
@@ -14,55 +15,100 @@
 		echo "<div class='alert alert-error'>".validation_errors().'</div>';
 	}
  ?>
+<?php if($metas){ ?>
+<div class="widget-box">
+	<div class='widget-title'>
+		<span class="icon">
+			<i class="icon-road"></i>
+		</span>
+		<h5>Metas</h5>
+	</div>
+	
+	<div class="widget-content">
+		<table class='table'>
+			<tr>
+				<th>nombre</th>
+				<th>descripcion</th>
+				<th>actual</th>
+				<th>lograr</th>
+				<th>tipo</th>
+				<th>Terminada</th>
+			</tr>
+			<?php $i=0; ?>
+			<?php foreach($metas as $meta){ ?>
+			<tr>
+				<td><?php echo $meta->nombre; ?></td>
+				<td><?php echo $meta->descripcion; ?></td>
+				<td><?php echo $meta->edo_actual; ?></td>
+				<td><?php echo $meta->edo_lograr; ?></td>
+				<td><?php echo $meta->tipo; ?></td>
+				<td>
+					<span class="icon">
+						<i class="<?php echo $terminadas[$i]; ?>"></i>
+					</span>
+				</td>
+			</tr>
+			<?php $i++; ?>
+			<?php } ?>
+		</table>
+
+	</div>
+</div>
+<?php } ?>
+
 
 <?php
 $cont=0; 
 if($widgets) foreach ($widgets as $widget): ?>
 <div class="widget-box">
-
-	<!--<input type="button" value="editar" class="btn-edit" wid="<?php echo $widget->widgetobj_id; ?>"/>-->
 	
 	<?php
 	switch ($widget->tipo) {
-		/*********************************************************************************/
-		/*                                    Texto                                      */
-		/*********************************************************************************/
 		case 'text':
 			$data=array('widget'=>$widget,'id'=>$id,'cont'=>$cont);
 			$this->load->view('items/texto',$data);
 				
 			break;
-		/*********************************************************************************/
-		/*                                    Comentarios                                */
-		/*********************************************************************************/
 		case 'comentario':
 			$data=array('widget'=>$widget,'id'=>$id,'cont'=>$cont,'user_id'=>$user_id);
 			$this->load->view('items/comentario',$data);
 				break;	
-		/*********************************************************************************/
-		/*                                    Impacto                                    */
-		/*********************************************************************************/
 		case 'impacto':
 			$data=array('widget'=>$widget,'id'=>$id,'cont'=>$cont,'user_id'=>$user_id);
 			$this->load->view('items/impacto',$data);
 			break;
-		/*********************************************************************************/
-		/*                                    Checklist                                    */
-		/*********************************************************************************/
 		case 'check':
 			$data=array('widget'=>$widget,'id'=>$id,'cont'=>$cont,'user_id'=>$user_id);
 			$this->load->view('items/check',$data);
 			break;
+		case 'meta':
+			$data=array('widget'=>$widget,'id'=>$id,'cont'=>$cont,'user_id'=>$user_id);
+			$this->load->view('items/meta',$data);
+			break;
 		default:
-			# code...
+			echo $widget->tipo;
 			break;
 		}
 		$cont++;
-		?>
-				
-
-	
+		?>	
+</div>
 <?php endforeach; ?>
+<?php
+$data=array('id'=>$id,'cont'=>$cont,'user_id'=>$user_id);
+/*$this->load->view('forms/texto',$data);//Normal - Done
+$this->load->view('forms/checklist',$data);//Dinámico 
+$this->load->view('forms/comentario',$data);//Uno por uno
+$this->load->view('forms/meta',$data);
+$this->load->view('forms/evento',$data);
+$this->load->view('forms/emergencia',$data);
+$this->load->view('forms/legislacion',$data);
+$this->load->view('forms/responautor',$data);
+$this->load->view('forms/impacto',$data);//
+$this->load->view('forms/mapa',$data);//Normal
+$this->load->view('forms/archivo',$data);
+$this->load->view('forms/galeria',$data);*/
+?>
+
 	
 <div style="text-align:center;">
 	<div class="btn-group">

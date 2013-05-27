@@ -1,4 +1,12 @@
-<div class="widget-title"><span class="icon"><i class="icon-list-alt"></i></span><h5><?php echo $widget->widget_nombre; ?></h5><div class="buttons"><a href="#myAlert<?php echo $cont;?>" data-toggle="modal" class="btn btn-mini"><i class="icon-pencil"></i> Editar</a><a href="<?php echo base_url()?>index.php/objetivos/delItem/<?php echo $widget->widgetobj_id.'/'.$id; ?>" class="btn btn-mini"><i class="icon-trash"></i> Borrar</a></div></div>
+<div class="widget-title">
+	<span class="icon"><i class="icon-list-alt"></i></span>
+	<h5><?php echo $widget->widget_nombre; ?></h5>
+	<div class="buttons"><a href="#myAlert<?php echo $cont;?>" data-toggle="modal" class="btn btn-mini">
+		<i class="icon-pencil"></i> Editar</a>
+		<a href="<?php echo base_url()?>index.php/items/delItem/<?php echo $widget->widgetobj_id.'/'.$id; ?>" class="btn btn-mini">
+			<i class="icon-trash"></i> Borrar</a>
+	</div>
+</div>
 <div class="widget-content">
 <?php
 if($widget->rows)foreach ($widget->rows as $row) {
@@ -42,4 +50,3 @@ if($widget->rows)foreach ($widget->rows as $row) {
 </div>
 
 </div>
-</div>	

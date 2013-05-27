@@ -7,14 +7,11 @@
 	<link rel="stylesheet" href="/enny/assets/css/bootstrap-responsive.min.css" />
 	<link rel="stylesheet" href="/enny/assets/css/fullcalendar.css" />	
 	<link rel="stylesheet" href="/enny/assets/css/unicorn.main.css" />
-	<link rel="stylesheet" href="/enny/assets/css/uniform.css" />
 	<link rel="stylesheet" href="/enny/assets/css/unicorn.grey.css" class="skin-color" />
 	<link rel="stylesheet" href="/enny/assets/css/uniform.css" class="skin-color" />
 	<link rel="stylesheet" href="/enny/assets/css/select2.css" />		
 	<link rel="stylesheet" href="/enny/assets/css/unicorn.main.css" />
 	<link rel="stylesheet" href="/enny/assets/css/style.css">
-	<link rel="stylesheet" href="/enny/assets/css/jquery-ui.css" />
-
 
 </head>
 <body>
@@ -46,18 +43,17 @@
 			<a href="#" class="visible-phone"><i class="icon icon-home"></i> Inicio</a>
 			<ul>
 				<li class="active"><a href="<?php echo base_url()."index.php/programas"; ?>"><i class="icon icon-home"></i> <span>Inicio</span></a></li>
-				<li><a href="<?php echo base_url()."index.php/programas"; ?>"><i class="icon icon-th-list"></i> <span>Programas</span></a></li>
-				<li><a href="<?php echo base_url()."index.php/tipos_usuariosa"; ?>"><i class="icon icon-th-list"></i> <span>Usuarios</span></a></li>
-				<li><a href="<?php echo base_url()."index.php/areas"; ?>"><i class="icon icon-tint"></i> <span>Áreas</span></a></li>
-				<li><a href="<?php echo base_url()."index.php/tipos_aspectos"; ?>"><i class="icon icon-pencil"></i> <span>Aspectos ambientales</span></a></li>
-				<li><a href="<?php echo base_url()."index.php/tipos_legislaciones"; ?>"><i class="icon icon-th"></i> <span>Legislación ambiental</span></a></li>
+				<li><a href="<?php echo base_url()."index.php/programas"; ?>"><i class="icon icon-th-list"></i> <span>Procedimientos ISO</span></a></li>
+				<li><a href="<?php echo base_url()."index.php/categorias"; ?>"><i class="icon icon-user"></i> <span>Integrantes</span></a></li>
+				<li><a href="<?php echo base_url()."index.php/areas"; ?>"><i class="icon icon-screenshot"></i> <span>Áreas</span></a></li>
+				<li><a href="<?php echo base_url()."index.php/tipos"; ?>"><i class="icon icon-leaf"></i> <span>Aspectos ambientales</span></a></li>
+				<li><a href="<?php echo base_url()."index.php/niveles"; ?>"><i class="icon icon-briefcase"></i> <span>Legislación ambiental</span></a></li>
 				<li class="submenu">
-					<a href="#"><i class="icon icon-file"></i> <span>Configuración</span></a>
+					<a href="#"><i class="icon icon-signal"></i> <span>Resultados</span></a>
 					<ul>
-						<li><a href="invoice.html">Invoice</a></li>
-						<li><a href="chat.html">Support chat</a></li>
-						<li><a href="calendar.html">Calendar</a></li>
-						<li><a href="gallery.html">Gallery</a></li>
+						<li><a href="invoice.html">Gráficos</a></li>
+						<li><a href="chat.html">Reporte PDF</a></li>
+						<li><a href="calendar.html">Historial</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -76,7 +72,7 @@
 				</div>
 			</div>
 			<div id="breadcrumb">
-				<a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+				<a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Inicio</a>
 				<a href="#" class="current"><?php echo $nombre; ?></a>
 			</div>
 			<div class="container-fluid">

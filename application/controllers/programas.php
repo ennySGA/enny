@@ -15,14 +15,18 @@ class programas extends CI_Controller{
 	function index(){
 		$data['nombre']='Programas';
 		$data['programas'] = $this->programasModel->getAll();
+		
+		$empresa_id='1';
+		$data['datos_tabla']=$this->programasModel->getTablaAvance($empresa_id);
+
 		$data['view'] ='programas/programas';
 		$this->load->view('template/body', $data);
 	}
 
-	function agregar(){
+	function nuevoPrograma(){
 		//$this->load->view('programas/nuevo');
 		$data['nombre']='Programas';
-		$data['view'] ='programas/agregar';
+		$data['view'] ='programas/nuevo';
 		$this->load->view('template/body', $data);
 	}
 
@@ -122,16 +126,17 @@ class programas extends CI_Controller{
 		$id=$this->uri->segment(3);
 		$data['programas'] = $this->programasModel->getById($id);
 		$data['objetivos'] = $this->objetivosModel->getByProgramaId($id);
-
-		$data['metas']=$this->metasModel->getByObjetivoId('3');
-
+		
+		/*DATOS PARA EL AVANCE DE OBJETIVOS*/
+		$data['datos_tabla']=$this->objetivosModel->getDatosTablaByPrograma($id);
+		
 		$data['nombre']='Programas';
 		$data['view'] ='programas/ver';
 		$this->load->view('template/template', $data);
 
 	}
 
-	function borrar(){
+	function eliminar(){
 		$id = $this->uri->segment(3);
 		$data['activo'] = 0;
 		$data['id'] = $id;
@@ -139,7 +144,7 @@ class programas extends CI_Controller{
 		redirect('programas/programas', 'refresh');
 	}
 
-	function actualizar(){
+	function editar(){
 		$guardar = $this->input->post('guardar');
 		if($guardar){
 			$data['id'] = $this->input->post('id');
@@ -176,7 +181,7 @@ class programas extends CI_Controller{
 			$id = $this->uri->segment(3);
 			$programaData = $this->programasModel->getById($id);
 			$data['nombre']='Programas';
-			$data['view'] = 'programas/actualizar';
+			$data['view'] = 'programas/editar';
 			$data['nombre'] = $programaData[0]->nombre;
 			$data['descripcion'] = $programaData[0]->descripcion;
 			$this->load->view('template/template', $data);

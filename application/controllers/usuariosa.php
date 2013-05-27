@@ -1,21 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Usuariosa extends CI_Controller {
+class Usuarios extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-		$this->load->model('usuariosaModel');
-		$this->load->model('tipos_usuariosaModel');
+		$this->load->model('usuariosModel');
+		$this->load->model('categoriasModel');
      }
 
 	function index(){
 		$data['nombre']='Usuarios';
-		$data['view'] = 'usuariosa/usuariosa';
-		$data['usuarios'] = $this->usuariosaModel->getAll();
+		$data['view'] = 'usuarios/usuarios';
+		$data['usuarios'] = $this->usuariosModel->getAll();
 		$this->load->view('template/body', $data);
 	}
 
-	function agregar(){
+	function nuevo(){
 		$guardar = $this->input->post('guardar');
 		if($guardar){
 			$data = array(
@@ -26,38 +26,39 @@ class Usuariosa extends CI_Controller {
 				'password' => $this->input->post('password'),
 				'active' => 1
 				);
-			$this->usuariosaModel->insertUsuario($data);
-			redirect('tipos_usuariosa/ver/'.$data['categoria_id']);
+			$this->usuariosModel->insertUsuario($data);
+			redirect('categorias/ver/'.$data['categoria_id']);
 		}else{
 			$data['nombre']='Usuarios';
-			$data['view'] = 'usuariosa/agregar';
+			$data['view'] = 'usuarios/nuevo';
 			$this->load->view('template/body', $data);
 		}
 	}
 
 	function ver(){
 			$id=$this->uri->segment(3);
-			$data['usuarios'] = $this->usuariosaModel->getById($id);
+			$data['usuarios'] = $this->usuariosModel->getById($id);
+			echo $data['usuarios'][0]->categoria_id;
 			$data['nombre']='Usuarios';
-			$data['tipos_usuariosa'] = $this->tipos_usuariosaModel->getById($id);
-			$data['view'] ='usuariosa/ver';
+			$data['categorias'] = $this->categoriasModel->getById($id);
+			$data['view'] ='usuarios/ver';
 			$this->load->view('template/body', $data);
 
 	}
 
-	function borrar(){
+	function eliminar(){
 		$id = $this->uri->segment(3);
 		$data['active'] = 0;
 		$data['id'] = $id;
-		$usuario = $this->usuariosaModel->getById($id);
+		$usuario = $this->usuariosModel->getById($id);
 		$categoria_id = $usuario[0]->categoria_id;
 		//var_dump($cosa);
-		$this->usuariosaModel->deleteUsuario($data);
-		redirect('tipos_usuariosa/ver/'.$categoria_id);
+		$this->usuariosModel->deleteUsuario($data);
+		redirect('categorias/ver/'.$categoria_id);
 	}
 
 
-	function actualizar(){
+	function editar(){
 		$id = $this->uri->segment(3);
 		$guardar = $this->input->post('guardar');
 		if($guardar){
@@ -68,13 +69,13 @@ class Usuariosa extends CI_Controller {
 				'correo' => $this->input->post('correo'),
 				'categoria_id' => $this->input->post('categoria_id'),
 				);
-			$this->usuariosaModel->updateUsuario($data);
-			//$this->usuariosaModel->insertusuario($data);
-			redirect('tipos_usuariosa/ver/'.$data['categoria_id']);
+			$this->usuariosModel->updateUsuario($data);
+			//$this->usuariosModel->insertusuario($data);
+			redirect('categorias/ver/'.$data['categoria_id']);
 
 		}else{
-			$usuarioData = $this->usuariosaModel->getById($id);
-			$data['view'] = 'usuarios/actualizar';
+			$usuarioData = $this->usuariosModel->getById($id);
+			$data['view'] = 'usuarios/editar';
 			$data['nombre'] = $usuarioData[0]->nombre;
 			$data['apellido'] = $usuarioData[0]->apellido;
 			$data['correo'] = $usuarioData[0]->correo;

@@ -15,9 +15,9 @@
 	 	if($itemAct->active){
 			echo "<a href=".base_url()."index.php/actividades/ver/".$itemAct->id.">".$itemAct->nombre."</a>";
 			echo " ";
-			echo "<button><a href=".base_url()."index.php/actividades/borrar/".$itemAct->id."> Eliminar </a></button>";
+			echo "<button><a href=".base_url()."index.php/actividades/eliminar/".$itemAct->id."> Eliminar </a></button>";
 			echo " ";
-			echo "<button><a href=".base_url()."index.php/actividades/actualizar/".$itemAct->id.">Editar</a></button>";
+			echo "<button><a href=".base_url()."index.php/actividades/editar/".$itemAct->id.">Editar</a></button>";
 			echo "<br/>";
 		}
 	endforeach;
@@ -29,7 +29,7 @@
 	echo "<br/>No tiene actividades aún";
 }?>
 <br/>
-<?php echo "<a href=".base_url()."index.php/actividades/agregar/".$this->uri->segment(3)."> Agregar actividad </a>"?>
+<?php echo "<a href=".base_url()."index.php/actividades/nueva/".$this->uri->segment(3)."> Agregar actividad </a>"?>
 
 <button><a href="<?php echo base_url(); ?>index.php/areas/">Lista áreas</a></button>
 

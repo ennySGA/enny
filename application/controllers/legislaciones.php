@@ -5,7 +5,7 @@ class Legislaciones extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('legislacionesModel');
-		$this->load->model('tipos_legislacionesModel');
+		$this->load->model('nivelesModel');
      }
 
 	function index(){
@@ -15,7 +15,7 @@ class Legislaciones extends CI_Controller {
 		$this->load->view('template/body', $data);
 	}
 
-	function agregar(){
+	function nuevo(){
 		$guardar = $this->input->post('guardar');
 		if($guardar){
 			$data = array(
@@ -25,10 +25,10 @@ class Legislaciones extends CI_Controller {
 				'active' => 1
 				);
 			$this->legislacionesModel->insertLegislacion($data);
-			redirect('tipos_legislaciones/ver/'.$data['nivel_id']);
+			redirect('niveles/ver/'.$data['nivel_id']);
 		}else{
 			$data['nombre']='Legislación ambiental';
-			$data['view'] = 'legislaciones/agregar';
+			$data['view'] = 'legislaciones/nuevo';
 			$this->load->view('template/body', $data);
 		}
 	}
@@ -37,14 +37,14 @@ class Legislaciones extends CI_Controller {
 			$id=$this->uri->segment(3);
 			$data['legislaciones'] = $this->legislacionesModel->getById($id);
 			echo $data['legislaciones'][0]->nivel_id;
-			$data['tipos_legislaciones'] = $this->tipos_legislacionesModel->getById($id);
+			$data['niveles'] = $this->nivelesModel->getById($id);
 			$data['nombre']='Legislación ambiental';
 			$data['view'] ='legislaciones/ver';
 			$this->load->view('template/body', $data);
 
 	}
 
-	function borrar(){
+	function eliminar(){
 		$id = $this->uri->segment(3);
 		$data['active'] = 0;
 		$data['id'] = $id;
@@ -52,11 +52,11 @@ class Legislaciones extends CI_Controller {
 		$nivel_id = $legislacion[0]->nivel_id;
 		//var_dump($cosa);
 		$this->legislacionesModel->deleteLegislacion($data);
-		redirect('tipos_legislaciones/ver/'.$nivel_id);
+		redirect('niveles/ver/'.$nivel_id);
 	}
 
 
-	function actualizar(){
+	function editar(){
 		$id = $this->uri->segment(3);
 		$guardar = $this->input->post('guardar');
 		if($guardar){
@@ -68,11 +68,11 @@ class Legislaciones extends CI_Controller {
 				);
 			$this->legislacionesModel->updateLegislacion($data);
 			//$this->legislacionesModel->insertlegislacion($data);
-			redirect('tipos_legislaciones/ver/'.$data['nivel_id']);
+			redirect('niveles/ver/'.$data['nivel_id']);
 
 		}else{
 			$legislacionData = $this->legislacionesModel->getById($id);
-			$data['view'] = 'legislaciones/actualizar';
+			$data['view'] = 'legislaciones/editar';
 			$data['nombre'] = $legislacionData[0]->nombre;
 			$data['descripcion'] = $legislacionData[0]->descripcion;
 			$data['nivel_id'] = $legislacionData[0]->nivel_id;

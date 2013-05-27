@@ -1,5 +1,5 @@
 
-	<p><a href="http://localhost/enny/index.php/responsabilidades/agregar">[+]</a> Nueva</p>
+	<p><a href="http://localhost/enny/index.php/responsabilidades/nuevaResponsabilidad">[+]</a> Nueva</p>
 	<table>
  		<thead>
  		<tr>
@@ -12,10 +12,10 @@
  		</tr>
  		</thead>
  		<tbody>
- 		<?php if ($responsabilidades) foreach ($responsabilidades as $r):?>
+ 		<?php foreach ($responsabilidades as $r):?>
  		<tr>
 
- 		<td><form name="alta" action="http://localhost/enny/index.php/responsabilidades/borrar/" method="POST"> 		
+ 		<td><form name="alta" action="http://localhost/enny/index.php/responsabilidades/baja/" method="POST"> 		
 		<input type="hidden" name="responsable" value="<?=$r->responsable?>" />
 		<input type="submit" value="Eliminar"/></form></td>
 		

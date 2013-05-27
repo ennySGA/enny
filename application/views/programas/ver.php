@@ -1,4 +1,37 @@
 <div class="widget-box">
+	<div class='widget-title'>
+		<span class="icon">
+			<i class="icon-road"></i>
+		</span>
+		<h5>Avance de objetivos</h5>
+	</div>
+	
+	<div class="widget-content">
+		<table class='table'>
+			<tr>
+				<th>nombre</th>
+				<th>metas</th>
+				<th>terminadas</th>
+				<th>avance</th>
+			</tr>
+			<?php foreach($datos_tabla as $objetivo){ ?>
+			<tr>
+				<td><?php echo $objetivo['nombre'] ?></td>
+				<td><?php echo $objetivo['total_metas'] ?></td>
+				<td><?php echo $objetivo['total_terminadas'] ?></td>
+				<td>
+					<div class="progress progress-success">
+						<div style="width: <?php echo $objetivo['porcentaje'] ?>%;" class="bar"></div>
+					</div>
+				</td>
+			</tr>
+			<?php } ?>
+		</table>
+
+	</div>
+</div>	
+
+<div class="widget-box">
 
 			<div class="widget-title">
 				<span class="icon">
@@ -47,37 +80,6 @@
 			</div>
 			</div>
 		</div>	
-	</div>
-
-	<div class="widget-box">
-		<div class='widget-title'>
-			<span class="icon">
-				<i class="icon-road"></i>
-			</span>
-			<h5>Metas</h5>
-		</div>
-		
-		<div class="widget-content">
-			<table class='table'>
-				<tr>
-					<th>nombre</th>
-					<th>descripcion</th>
-					<th>actual</th>
-					<th>lograr</th>
-					<th>tipo</th>
-				</tr>
-				<?php foreach($metas as $meta){ ?>
-				<tr>
-					<td><?php echo $meta->nombre; ?></td>
-					<td><?php echo $meta->descripcion; ?></td>
-					<td><?php echo $meta->edo_actual; ?></td>
-					<td><?php echo $meta->edo_lograr; ?></td>
-					<td><?php echo $meta->tipo; ?></td>
-				</tr>
-				<?php } ?>
-			</table>
-
-		</div>
 	</div>
 
 	<div class="row-fluid">

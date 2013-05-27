@@ -1,6 +1,6 @@
 
 <?php 
-$this->load->model('tipos_usuariosaModel');
+$this->load->model('categoriasModel');
 foreach ($usuarios as $item): 
 
  	echo "Nombre: ".$item->nombre;
@@ -10,7 +10,7 @@ foreach ($usuarios as $item):
  	echo "Correo: ".$item->correo;
  	echo "<br />";
  	$id = $item->categoria_id;
- 	$area = $this->tipos_usuariosaModel->getById($id);
+ 	$area = $this->categoriasModel->getById($id);
  	
 
 endforeach; ?>

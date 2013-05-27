@@ -50,5 +50,30 @@ class programasModel extends CI_Model{
 		//var_dump($newData);
 		$this->db->update('programas', $newData);
 	}
+
+	public function getByEmpresaId($empresa_id){
+		$this->db->where('empresa_id',$empresa_id);
+		$query=$this->db->get('programas');
+		return $query->result();
+	}
+
+	public function getTablaAvance($empresa_id){
+		$programas=$this->getByEmpresaId($empresa_id);
+		$this->load->model('metasModel');
+		$data=array();
+		$i=0;
+		foreach($programas as $programa){
+			$total_metas=count($this->metasModel->getByPrograma($programa->id));
+			$total_terminadas=count($this->metasModel->getTerminadasByPrograma($programa->id));
+			if($total_metas>0){
+				$data[$i]['nombre']=$programa->nombre;
+				$data[$i]['total_metas']=$total_metas;
+				$data[$i]['total_terminadas']=$total_terminadas;
+				$data[$i]['porcentaje']=($total_terminadas/$total_metas)*100;
+				$i++;
+			}
+		}
+		return $data;
+	}
 }
  ?>

@@ -8,6 +8,8 @@ class objetivos extends CI_Controller{
 		$this->load->model('comentariosModel');
 		$this->load->model('adminModel');
 		$this->load->model('widgetobjModel');
+		$this->load->model('metasModel');
+		$this->is_logged_in();
 	}
 	function index(){
 		$data['nombre']='Objetivos';
@@ -16,12 +18,11 @@ class objetivos extends CI_Controller{
 		$this->load->view('template/body', $data);
 	}
 	function single(){
-		/*$this->is_logged_in();*/
 		$user=$this->adminModel->getByName($this->session->userdata('username'));
 		$data['user_id'] = $user[0]->id;
 		$id=$this->uri->segment(3);
-		$data['nombre']='Objetivos';
 		$data['objetivos']=$this->objetivosModel->getById($id);
+		$data['nombre']=$data['objetivos'][0]->nombre;
 		$data['widgets']=$this->widgetobjModel->getAllById($id);
 		/*
 		  Consultar los campos de cada widget (switch)
@@ -39,6 +40,9 @@ class objetivos extends CI_Controller{
 					case 'comentario':
 						$widget->rows=$this->comentariosModel->getAllByW($widget->widgetobj_id);
 						break;
+					case 'meta':
+						$widget->rows=$this->metasModel->getAllByW($widget->widgetobj_id);
+						break;
 					default:
 						# code...
 						break;
@@ -50,6 +54,7 @@ class objetivos extends CI_Controller{
 			/*EDUARDO: Comienza validacion de form Metas*/
 			$this->load->library('form_validation');
 
+			/*Si se recibe un sunmit de meta nueva*/
 			if($this->input->post('submit_meta')){
 				$config=array(
 					array(
@@ -80,6 +85,7 @@ class objetivos extends CI_Controller{
 					$data['message']='Meta dada de alta correctamente';
 				}
 			}
+			/*si se recibe un submit de evento nuevo*/
 			if($this->input->post('submit_evento')){
 				$config=array(
 					array(
@@ -101,9 +107,21 @@ class objetivos extends CI_Controller{
 				}
 			}
 
-			
+			$data['metas']=$this->metasModel->getByObjetivoId($id);
 
-			$data['nombre']='Objetivos';
+			$terminada=array();
+			foreach ($data['metas'] as $meta) {
+				if($this->metasModel->esTerminada($meta->tipo, $meta->edo_actual, $meta->edo_lograr)){
+					$terminada[]="icon-ok";
+				}
+				else{
+					$terminada[]="icon-remove";
+				}
+			}
+			$data['terminadas']=$terminada;
+
+
+			$data['nombre']=$data['objetivos'][0]->nombre;
 			$data['view']='objetivos/single';
 			$data['title']='Objetivo';
 			$data['cont']=count($data['widgets'])-1;
@@ -114,142 +132,10 @@ class objetivos extends CI_Controller{
 			echo "error al cargar objetivos";
 		}
 	}
+
 	function saveItem(){
-		/**************************************Texto*******************************/
-		if(isset($_POST['save-text'])){
-			$regs=array();
-			$id=$_POST['obj_id'];
-			$type=$_POST['type'];
-			$nombre=$_POST['widget_nombre'];		
-			$item=array('descripcion'=>$_POST['descripcion']);
-			$w=$this->widgetobjModel->add(array('tipo'=>$type,'objetivo_id'=>$id,'nombre'=>$nombre));
-			$item['widgetobj_id']=$w;
-			if($this->textModel->add($item))
-				echo "Guardado con éxito";
-			else
-				echo "Error al guardar";
 
-		}elseif(isset($_POST['edit-text'])){
-			$nombre=$_POST['widget_nombre'];
-			$w=$this->widgetobjModel->update(array('nombre'=>$nombre),$_POST['w_id']);
-			$reg=array('descripcion'=>$_POST['descripcion']);
-			$id=$_POST['id'];
-			$this->textModel->update($reg,$id);
-		}
-		/**************************************Comentarios*******************************/
-		if(isset($_POST['save-comentario'])){
-			$regs=array();
-			$id=$_POST['obj_id'];
-			$type=$_POST['type'];
-			$nombre=$_POST['widget_nombre'];		
-			$item=array('cuerpo'=>$_POST['cuerpo'],'usuario_id'=>$_POST['usuario_id']);
-			$w=$this->widgetobjModel->add(array('tipo'=>$type,'objetivo_id'=>$id,'nombre'=>$nombre));
-			$item['widgetobj_id']=$w;
-
-			if($this->comentariosModel->add($item))
-				echo "Guardado con éxito";
-			else
-				echo "Error al guardar";
-
-		}elseif(isset($_POST['add-comentario'])){
-			$item=array('cuerpo'=>$_POST['cuerpo']);
-			$item['widgetobj_id']=$_POST['w_id'];
-			$item['usuario_id']=$_POST['usuario_id'];
-			$this->comentariosModel->add($item);
-		}elseif(isset($_POST['edit-comentario'])){
-			var_dump($_POST);
-			$id=$_POST['id'];
-			$item=array('cuerpo' => $_POST['cuerpo']);
-			$this->comentariosModel->update($item,$id);
-		}
-		/**************************************Checklist*******************************/
-		if(isset($_POST['save-check'])){
-			$regs=array();
-			foreach ($_POST['cuerpo'] as $key => $value) {
-				if(isset($_POST['status'][$key]) && $_POST['status'][$key]=='on'){
-					$regs[]=array('cuerpo'=>$value,'status'=>1);
-				}else{
-					$regs[]=array('cuerpo'=>$value,'status'=>0);
-				}
-			}
-			$id=$_POST['obj_id'];
-			$type=$_POST['type'];
-			$nombre=$_POST['widget_nombre'];
-			$data=array();
-			$w=$this->widgetobjModel->add(array('tipo'=>$type,'objetivo_id'=>$id,'nombre'=>$nombre));
-			foreach ($regs as $item) {
-				$item['widgetobj_id']=$w;
-				if($this->checkModel->add($item))
-					echo "Guardado con éxito";
-				else
-					echo "Error al guardar";
-			}	
-		}
-		if (isset($_POST['edit-check'])) {
-			var_dump($_POST);
-			$nombre=$_POST['widget_nombre'];
-			$w=$this->widgetobjModel->update(array('nombre'=>$nombre),$_POST['w_id']);
-			foreach ($_POST['cuerpo'] as $key => $value) {
-
-				if(isset($_POST['id'][$key])){
-					if(isset($_POST['status'][$_POST['id'][$key]]) && $_POST['status'][$_POST['id'][$key]]=='on'){
-						$reg=array('cuerpo'=>$value,'status'=>1);
-					}else{
-						$reg=array('cuerpo'=>$value,'status'=>0);
-					}
-					$id=$_POST['id'][$key];
-					$this->checkModel->update($reg,$id);
-				}else{//Agregar los nuevos registros en la edición
-					$reg['widgetobj_id']=$_POST['w_id'];
-					$reg['status']=0;
-					$this->checkModel->add($reg);
-				}
-			}
-		}
-		/**************************************Impacto*******************************/
-		if(isset($_POST['save-impacto'])){
-			$regs=array();
-			foreach ($_POST['cuerpo'] as $key => $value) {
-				$regs[]=array('cuerpo'=>$value,'descripcion'=>$_POST['descripcion'][$key]);
-			}
-			$id=$_POST['obj_id'];
-			$type=$_POST['type'];
-			$nombre=$_POST['widget_nombre'];
-			switch ($type) {
-				/*Save de fields in the respective table (type)*/
-				case 'text':
-					$data=array();
-					$w=$this->widgetobjModel->add(array('tipo'=>$type,'objetivo_id'=>$id,'nombre'=>$nombre));
-					foreach ($regs as $item) {
-						$item['widgetobj_id']=$w;
-						if($this->textModel->add($item))
-							echo "Guardado con éxito";
-						else
-							echo "Error al guardar";
-					}
-					break;
-				default:
-					echo "no text";
-					break;
-			}
 		
-		}elseif(isset($_POST['edit-impacto'])){
-			//var_dump($_POST);
-			$regs=array();
-			$ids=array();
-			$nombre=$_POST['widget_nombre'];
-			$w=$this->widgetobjModel->update(array('nombre'=>$nombre),$_POST['w_id']);
-			foreach ($_POST['cuerpo'] as $key => $value) {
-				$reg=array('cuerpo'=>$value,'descripcion'=>$_POST['descripcion'][$key]);
-				if(isset($_POST['id'][$key])){
-					$id=$_POST['id'][$key];
-					$this->textModel->update($reg,$id);
-				}else{//Agregar los nuevos registros en la edición
-					$reg['widgetobj_id']=$_POST['w_id'];
-					$this->textModel->add($reg);
-				}
-			}
-		}
 		$id=$this->uri->segment(3);
 		redirect('/objetivos/single/'.$id, 'refresh');
 		
@@ -281,24 +167,7 @@ class objetivos extends CI_Controller{
 		}*/
 		
 	}
-	function borrarComent(){
-		$this->comentariosModel->delete($this->uri->segment(3));
-		redirect('/objetivos/single/'.$this->uri->segment(4), 'refresh');
-	}
-	function delCheck(){
-		echo $id=$_POST['id'];
-		echo $this->checkModel->delete($id);
-	}
-	function delReg(){
-		$id=$_POST['id'];
-		echo $this->textModel->delete($id);
-	}
-	function delItem(){
-		$wid=$this->uri->segment(3);
-		$this->widgetobjModel->delete($wid);
-		$id=$this->uri->segment(4);
-		redirect('/objetivos/single/'.$id, 'refresh');
-	}
+	
 	function nuevo(){
 		$guardar = $this->input->post('guardar');
 		if($guardar){
@@ -462,9 +331,10 @@ class objetivos extends CI_Controller{
 		{
 			echo 'No tienes permisos para ver este sitio. <a href="'.base_url().'index.php/login">Login</a>';	
 			die();	
-			$data['nombre']='Login';	
-			$data['view'] = 'login/login_form';
-			$this->load->view('template/body', $data);
+			//$data['nombre']='Login';	
+			//$data['view'] = 'login/loginForm';
+			//$this->load->view('template/body', $data);
+			//die();
 		}		
 	}
 }

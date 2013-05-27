@@ -16,8 +16,8 @@ class Responsabilidades extends CI_Controller {
         $this->load->view('template/body', $data);
 	}
 
-	function agregar(){
-		$this->load->view('responsabilidades/agregar');
+	function nuevaResponsabilidad(){
+		$this->load->view('responsabilidades/nuevo');
 	}
 
 	function alta(){
@@ -41,11 +41,11 @@ class Responsabilidades extends CI_Controller {
 
 	function accion(){
 		$this->load->model('responsabilidadesModel');
-		$data['responsabilidad'] = $this->responsabilidadesModel->obtenerResponsabilidad($_POST['actualizar']);
-		$this->load->view('responsabilidades/actualizar', $data);
+		$data['responsabilidad'] = $this->responsabilidadesModel->obtenerResponsabilidad($_POST['editar']);
+		$this->load->view('responsabilidades/editar', $data);
 	}
 
-	function actualizar(){
+	function editar(){
 		$data['id'] = $_POST['id'];
 		$data['cargo'] = $_POST['cargo'];
 		$data['responsabilidad'] = $_POST['responsabilidad'];
@@ -54,9 +54,9 @@ class Responsabilidades extends CI_Controller {
 		$this->index();
 	}
 
-	function borrar(){
+	function baja(){
 		$responsable = $_POST['responsable'];
-		$this->responsabilidadesModel->borrar($responsable);
+		$this->responsabilidadesModel->baja($responsable);
 		$this->load->model('responsabilidadesModel');
 		$this->index();
 	}

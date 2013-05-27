@@ -4,7 +4,7 @@
 	?>
 	<h4>objetivos:</h4>
 
-	<?php if ($objetivos) foreach ($objetivos as $item): ?>
+	<?php foreach ($objetivos as $item): ?>
 	
 	<p>
 		<?php if($item->active){ ?>
